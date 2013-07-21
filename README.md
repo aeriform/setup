@@ -1,0 +1,4 @@
+setup
+=====
+
+Setup for bitstarter
