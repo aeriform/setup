@@ -46,3 +46,22 @@ ln -sb dotfiles/.bashrc .
 ln -sb dotfiles/.bashrc_custom .
 ln -sf dotfiles/.emacs.d .
 
+#Correct Backspace issue in emacs
+echo '' >> ~/.emacs.d/init.el
+echo '(normal-erase-is-backspace-mode 0)' >> ~/.emacs.d/init.el
+#Add line Home and End functionality in emacs
+echo '' >> ~/.emacs.d/init.el
+echo ';; Custom Mapping' >> ~/.emacs.d/init.el
+echo '(define-key global-map [home] `beginning-of-line)' >> ~/.emacs.d/init.el
+echo '(define-key global-map [end] `end-of-line)' >> ~/.emacs.d/init.el
+
+# Install Neo4J
+wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add
+# Create an Apt sources.list file
+echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list
+# Find out about the files in our repository
+apt-get update
+# Install Neo4j, community edition
+apt-get install neo4j
+# start neo4j server, available at http://localhost:7474 of the target machine
+neo4j start
